@@ -202,12 +202,13 @@ Every other cell runs unchanged.
 
 ## Author
 
-**Devam Shah** — Data Scientist & Analytics Engineer
+**Devam Shah** · Data Scientist & Analytics Engineer
 
+- Website: [devam-shah.com](https://devam-shah.com)
+- LinkedIn: [linkedin.com/in/devam-a-shah](https://www.linkedin.com/in/devam-a-shah)
 - GitHub: [github.com/dshah-ds](https://github.com/dshah-ds)
-- LinkedIn: [linkedin.com/in/devam-a-shah](https://www.linkedin.com/in/devam-a-shah/)
 - Medium: [@devamshah26](https://medium.com/@devamshah26)
-- Blog: [onenotebookatatime.blogspot.com](https://onenotebookatatime.blogspot.com)
+- Blog: [One Notebook at a Time](https://onenotebookatatime.blogspot.com)
 
 If this was useful, a ⭐ on the repo is always appreciated — and I'm always happy to talk
 through the modeling choices, overfitting diagnosis, or what I'd try next.
