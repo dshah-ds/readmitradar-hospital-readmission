@@ -102,7 +102,7 @@ EarlyStopping, and ReduceLROnPlateau**. Trials 1–4 only escalated dropout/L2 s
 same wide architecture — and the notebook explicitly diagnoses *why that stopped helping*
 (it was shrinking training accuracy, not improving test accuracy). Trial 5 changes the
 architecture itself (narrower 64 → 32 → 16 layers + L1/L2) and produces the best result of
-the project.
+the five trials.
 
 ---
 
@@ -124,7 +124,7 @@ Optimizer: **Adam** · Loss: **Binary Cross-Entropy** · Batch size: 32 · Up to
 
 | Stage | Architecture | Regularization | Train Acc | Test Acc | Train–Test Gap |
 |---|---|---|---|---|---|
-| Baseline | 64 → 32 | None | high (overfits) | 0.5860 | large |
+| Baseline | 64 → 32 | None | 0.8687 (last epoch) | 0.5860 | large (overfits) |
 | Hyperparameter tuning (best) | 128 → 64 → 32 | Dropout 0.2 | 0.6332–0.7370 | 0.5670–0.6390 | 0.0270–0.1250 |
 | Final — Trial 1 | 128 → 64 → 32 | Dropout 0.2 + L2 | 0.7210 | 0.6190 | 0.1020 |
 | Final — Trial 2 | 128 → 64 → 32 | Dropout 0.3 + L2 | 0.7130 | 0.6120 | 0.1010 |
@@ -132,13 +132,19 @@ Optimizer: **Adam** · Loss: **Binary Cross-Entropy** · Batch size: 32 · Up to
 | Final — Trial 4 | 128 → 64 → 32 | Dropout 0.5 + L2 | 0.6948 | 0.6150 | 0.0798 |
 | **Final — Trial 5** ✅ | **64 → 32 → 16 (narrower)** | **Dropout 0.3 + L1/L2** | **0.7013** | **0.6260** | **0.0753** |
 
-**Trial 5 is the best result of the project** — highest test accuracy *and* a near-best
-train-test gap, achieved by changing the network's shape rather than just escalating
-regularization on the same wide architecture.
+**Trial 5 is the recommended model** — the highest test accuracy *and* the smallest
+train-test gap of the five trials, achieved by changing the network's shape rather than just
+escalating regularization on the same wide architecture.
+
+> **Note:** the single highest test score in the project (0.6390) came from an SGD run during
+> hyperparameter tuning, with a 0.029 gap. As the notebook explains, SGD's small gap mostly
+> reflects fitting the training data less in the same number of epochs, so Trial 5 is
+> recommended for its controlled training (early stopping and learning-rate scheduling). The
+> two are about one point apart.
 
 ### Key takeaway
 Test accuracy across **every** configuration tried — three optimizers, multiple
-dropout/L2 strengths, five architecture trials — stayed within a tight **0.567–0.626** band.
+dropout/L2 strengths, five architecture trials — stayed within a tight **0.567–0.639** band.
 That consistency points to a **feature ceiling**, not a tuning problem: the 19 available
 features place a practical limit on accuracy, and the next real gains will come from feature
 engineering (interaction terms, clinically meaningful binning, additional data sources) or
